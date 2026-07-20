@@ -8,6 +8,8 @@ import Levels from './levels.js'
 import Audio from './audio.js'
 import BlockTypes from './blocktypes.js'
 import Menu from './menu.js'
+import DPad from './dpad.js'
+
 
 let Textures = {}
 
@@ -109,6 +111,8 @@ export default {
 
 		loadingMessage.innerHTML = "initializing ui..."
 
+		DPad.init()
+
 		Menu.init()
 
 		document.body.appendChild(Menu.mainMenu.div)
@@ -125,6 +129,7 @@ export default {
 
 		this.scene = this.gameScene
 		this.loadLevel(level)
+		DPad.enable()
 		
 		Editor.enable()
 		Input.enablePlayerMovement()
@@ -134,6 +139,7 @@ export default {
 	exitGame() {
 		Audio.play("mus_level5.mp3")
 		Input.disablePlayerMovement()
+		DPad.disable()
 		Editor.disable()
 		for (let ent of this.entities) ent.cleanup()
 		this.entities = []
