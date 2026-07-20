@@ -1,0 +1,67 @@
+* {
+	font-family: monospace;
+}
+
+body { margin: 0; background-color: black; color: white; }
+
+button {
+	outline: 0;
+	border: 0;
+	background-color: black;
+	color: white;
+}
+
+#startGameButton {
+
+	color : white;
+
+}
+
+.centered {
+
+	position  : absolute;
+	top       : 50%;
+	left      : 50%;
+	transform : translate(-50%, -50%);
+	
+}
+
+.menu {
+		border-radius: 30px;
+
+	display   : flex;
+	flex-direction : column;
+
+	background-color : #00000044;
+
+	outline : 0;
+	padding: 8px;
+	
+}
+
+.menuitem {
+	margin: 8px 8px 8px 8px;
+}
+
+.label {
+	border-radius: 30px;
+	background-color : #00000000;
+	outline : 1px solid white;
+	padding: 6px;
+	color : white;
+}
+
+.menubutton {
+	border-radius: 30px;
+	background-color : gray;
+	outline : 0;
+	padding: 15px;
+	color : white;
+}
+
+.menubutton:hover {
+	background-color : white;
+	outline : 0;
+	padding: 15px;
+	color : gray;
+}
