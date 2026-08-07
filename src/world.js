@@ -169,6 +169,10 @@ export default {
 	_arrayIndexFromPosition(position) {
 		const temp = position.clone()
 		temp.add( new THREE.Vector3(WIDTH/2, 1, WIDTH/2) )
+		if (	temp.x <  0     || temp.y <  0     || temp.z <  0     ||
+			temp.x >= WIDTH || temp.y >= WIDTH || temp.z >= WIDTH) {
+			return -1;
+		}
 		return temp.y * WIDTH * WIDTH + WIDTH * temp.z + temp.x
 
 	},

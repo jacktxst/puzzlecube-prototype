@@ -1,28 +1,7 @@
-import Player from './player.js'
 import World from './world.js'
 import BlockTypes from './blocktypes.js'
 import * as THREE from 'three';
 import Game from './game.js'
-
-const PI = 3.141592
-
-// the four directions that the player can move in by pressing w, a, s and d
-
-const PLAYER_MOVE_DIRS = [
-	new THREE.Vector3(0 , 0,-1),
-	new THREE.Vector3(-1, 0, 0),
-	new THREE.Vector3(0 , 0, 1),
-	new THREE.Vector3(1 , 0, 0)
-]
-
-// the full rotation made during the player's move animation
-
-const PLAYER_SPIN_DIRS = [
-	new THREE.Vector3(-PI/2, 0,     0),
-	new THREE.Vector3(    0, 0,  PI/2),
-	new THREE.Vector3( PI/2, 0,     0),
-	new THREE.Vector3(    0, 0, -PI/2)
-]
 
 const _cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
 
