@@ -31,8 +31,6 @@ export default {
 		this.mainMenu = mainMenu
 
 
-
-
 		let levelsMenu = this.createMenu()
 		for (let level in Levels) {
 			levelsMenu.createButton(`LEVEL ${level}`,()=>{

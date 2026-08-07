@@ -34,10 +34,28 @@ export default {
 		Game.gameScene.add(this.groundPlane)
 		Game.gameScene.add( this.hologram )
 
+		
+
+
+		this.editorMenuDiv = document.createElement("div");
+		this.editorMenuDiv.style.position = "absolute";
+		this.editorMenuDiv.style.bottom = "0"
+		for (let blockType of Object.keys(BlockTypes)){
+			let blockTypeDiv = document.createElement("button")
+			blockTypeDiv.innerHTML = blockType;
+			blockTypeDiv.addEventListener("click",(e)=>{
+				this.selectedBlockTypeId = BlockTypes[blockType].numericId
+				this.hologram.material.color = BlockTypes[Object.keys(BlockTypes)[this.selectedBlockTypeId]].material.color
+			})
+			this.editorMenuDiv.appendChild(blockTypeDiv)
+		}
+		document.body.appendChild(this.editorMenuDiv);
+
 		this.toggleVisibility()
 	},
 
 	disable() {
+		this.editorMenuDiv.visible = false;
 		if (this.isVisible) {
 			this.toggleVisibility()
 		}
@@ -48,12 +66,17 @@ export default {
 		Input.enableEditorControls()
 	},
 
+	refreshHologramAppearance() {
+		this.hologram.material.color = BlockTypes[Object.keys(BlockTypes)[this.selectedBlockTypeId]].material.color
+	},
+
 	toggleVisibility() {
 
 		this.isVisible = !this.isVisible
 		this.hologram.visible = this.isVisible && !this.deleteMode
 		this.grid.visible = this.isVisible
 		this.groundPlane.visible = this.isVisible 
+		this.editorMenuDiv.visible = this.isVisible
 
 	}
 }

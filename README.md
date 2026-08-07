@@ -5,7 +5,9 @@ This is a prototype for a game I'm working on. The only reason this repo is publ
 # TODO:
 
 - [ ] display currently selected block type in editor
-- [ ] editor block pallette fr
+- [ ] all buttons must be pressed to open the door (AND)
+- [ ] wires and logic gates?
+- [x] editor block pallette
 - [ ] editor: implement click+drag for cuboid fill, with preview hologram
 - [ ] editor bug: hologram still stays even when you move mouse off of the grid
 - [x] fix parralel universe bug by enforcing strict bounds

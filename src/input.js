@@ -142,7 +142,7 @@ export default {
 	enableEditorControls() {
 
 		window.addEventListener   ("mousemove", this.handleMouseMoveEditor)
-		window.addEventListener   ("mousedown", this.handleMouseDownEditor)
+		Game.renderer.domElement.addEventListener   ("mousedown", this.handleMouseDownEditor)
 		window.addEventListener   ("keydown"  , this.handleKeyEventEditor)
 
 	},
@@ -150,7 +150,7 @@ export default {
 	disableEditorControls() {
 
 		window.removeEventListener("mousemove", this.handleMouseMoveEditor)
-		window.removeEventListener("mousedown", this.handleMouseDownEditor)
+		Game.renderer.domElement.removeEventListener("mousedown", this.handleMouseDownEditor)
 		window.removeEventListener("keydown"  , this.handleKeyEventEditor)
 
 	}
