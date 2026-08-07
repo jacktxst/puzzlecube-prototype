@@ -5,11 +5,18 @@ This is a prototype for a game I'm working on. The only reason this repo is publ
 # TODO:
 
 - [ ] display currently selected block type in editor
+- [ ] editor: implement click+drag for cuboid fill, with preview hologram
 - [ ] fix parralel universe bug by enforcing strict bounds
-- [ ] levels should be "compressed" to not include all the empty stuff
-- [ ] level export and level editor controls should be well documented
+- [x] levels should be "compressed" to not include all the empty stuff
+- [x] level export and level editor controls should be well documented
 - [ ] support for texturing the blocks
+- [ ] add "new level"
 - [ ] hide mobile controls on pc
+- [ ] unify audio and gameaudio.
+- [ ] animate moving cube
+- [ ] animate lift
+- [ ] animate falling tile
+- [ ] animate level win
 
 # CONTROLS
 

@@ -60,6 +60,19 @@ export default {
 				break;
 
 			case "c":
+				/* first: cutoff trailing 0s from the string */
+
+				let str_i=0;
+				let last_nonzero = 0;
+				while(str_i<Levels[Game.currentLevel].data.length){
+					if( Levels[Game.currentLevel].data[str_i] != '0' || Levels[Game.currentLevel].data[str_i+1] != '0'){
+						last_nonzero = str_i;
+					}
+					str_i += 2;
+				}
+
+				Levels[Game.currentLevel].data = Levels[Game.currentLevel].data.slice(0,last_nonzero+2);
+
 				let string = JSON.stringify(Levels[Game.currentLevel])
 				navigator.clipboard.writeText(string)
 				break;

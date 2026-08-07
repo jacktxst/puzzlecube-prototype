@@ -67,6 +67,7 @@ export default {
 	},
 
 	loadLevel(hexStr) {
+		this.data.fill(0)
 		this.data.setFromHex(hexStr)
 		this._buildMesh()
 		this._gatherTickableBlocks()
