@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import World from './world.js'
+import MovingCube from './ent_cube.js'
+
 import BlockTypes from './blocktypes.js'
 import Game from './game.js'
 import GameAudio from './gameaudio.js'
@@ -63,8 +65,8 @@ export default {
 				GameAudio.play("fail")
 				return true
 			} else {
-				World.setBlockAt(temp, BlockTypes.PUSH.numericId)
 				temp.sub(PLAYER_MOVE_DIRS[this.moveDirectionId])
+				Game.entities.push(new MovingCube(temp, PLAYER_MOVE_DIRS[this.moveDirectionId]));
 				World.setBlockAt(temp, BlockTypes.EMPTY.numericId)
 				GameAudio.play("move")
 				return false;

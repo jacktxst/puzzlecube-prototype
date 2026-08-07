@@ -11,9 +11,10 @@ This is a prototype for a game I'm working on. The only reason this repo is publ
 - [x] level export and level editor controls should be well documented
 - [ ] support for texturing the blocks
 - [ ] add "new level"
+- [ ] bugfix: moving block destroying stuff
 - [ ] hide mobile controls on pc
 - [ ] unify audio and gameaudio.
-- [ ] animate moving cube
+- [x] animate moving cube
 - [ ] animate lift
 - [ ] animate falling tile
 - [ ] animate level win

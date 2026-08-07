@@ -5,7 +5,6 @@ export default {
 		let dPadDiv = document.createElement("div")
 		this.dPadDiv = dPadDiv
 		dPadDiv.id = "dpad"
-		dPadDiv.style.display = "grid"
 		dPadDiv.style.gridTemplateColumns = "repeat(3, 1fr)"
 		dPadDiv.style.gridTemplateRows = "repeat(3, 1fr)"
 		let buttonLeft = document.createElement("div")
