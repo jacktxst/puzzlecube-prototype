@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import World from './world.js'
 import MovingCube from './ent_cube.js'
+import FallingTileEntity from './ent_falling.js'
 
 import BlockTypes from './blocktypes.js'
 import Game from './game.js'
@@ -44,6 +45,7 @@ export default {
 
 		if (World.getBlockAt(temp) === BlockTypes.FALLING.numericId) {
 			World.setBlockAt(temp, BlockTypes.EMPTY.numericId)
+			Game.entities.push(new FallingTileEntity(temp.clone()));
 		}
 
 		temp.y += 1
@@ -66,8 +68,8 @@ export default {
 				return true
 			} else {
 				temp.sub(PLAYER_MOVE_DIRS[this.moveDirectionId])
-				Game.entities.push(new MovingCube(temp, PLAYER_MOVE_DIRS[this.moveDirectionId]));
-				World.setBlockAt(temp, BlockTypes.EMPTY.numericId)
+				Game.entities.push(new MovingCube(temp.clone(), PLAYER_MOVE_DIRS[this.moveDirectionId]));
+				World.setBlockAt(temp.clone(), BlockTypes.EMPTY.numericId)
 				GameAudio.play("move")
 				return false;
 			}

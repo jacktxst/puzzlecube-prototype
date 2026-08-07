@@ -5,8 +5,9 @@ This is a prototype for a game I'm working on. The only reason this repo is publ
 # TODO:
 
 - [ ] display currently selected block type in editor
+- [ ] editor block pallette fr
 - [ ] editor: implement click+drag for cuboid fill, with preview hologram
-- [ ] editor bug: hologram still stays even when you move mouse off of grid
+- [ ] editor bug: hologram still stays even when you move mouse off of the grid
 - [x] fix parralel universe bug by enforcing strict bounds
 - [x] levels should be "compressed" to not include all the empty stuff
 - [x] level export and level editor controls should be well documented
@@ -17,7 +18,7 @@ This is a prototype for a game I'm working on. The only reason this repo is publ
 - [ ] unify audio and gameaudio.
 - [x] animate moving cube
 - [ ] animate lift
-- [ ] animate falling tile
+- [x] animate falling tile
 - [ ] animate level win
 
 # CONTROLS
