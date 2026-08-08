@@ -39,7 +39,15 @@ export default class MovingCube {
 		this.mesh.position.addVectors(this.origin, anim_pos)
 
 		if (this.animationProgress > this.ANIM_LENGTH) {
-			World.setBlockAt(this.target, BlockTypes.PUSH.numericId)
+			let underneath = this.target.clone()
+			let next = this.target.clone()
+			underneath.y -= 1;
+			next.add(this.direction)
+			if (World.getBlockAt(underneath) == BlockTypes.ICE.numericId && World.getBlockAt(next) == BlockTypes.EMPTY.numericId ){
+				Game.entities.push(new MovingCube(this.target.clone(),this.direction))
+			} else {
+				World.setBlockAt(this.target, BlockTypes.PUSH.numericId)
+			}
 			Game.scene.remove(this.mesh)
 			this.needToFree = true
 		}

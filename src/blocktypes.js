@@ -106,4 +106,15 @@ export default {
 		solid: false,
 		material: new THREE.MeshLambertMaterial({color:0x999999,transparent: true,opacity: 0.5,depthWrite: false}),
 	},
+	CLONE : {
+		numericId : 18,
+		solid: true,
+		tickable:true,
+		material: new THREE.MeshLambertMaterial({color:0x9999FF}),
+	},
+	ICE : {
+		numericId : 19,
+		solid: true,
+		material: new THREE.MeshLambertMaterial({color:0x9999FF,transparent: true,opacity: 0.7,depthWrite: false}),
+	},
 }

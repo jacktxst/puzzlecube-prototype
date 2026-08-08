@@ -3,6 +3,7 @@ import Game from './game.js'
 import Editor from './editor.js'
 import BlockTypes from './blocktypes.js'
 import Enemy from './enemy.js'
+import CloneEntity from './ent_clone.js'
 import Player from './player.js'
 
 const WIDTH  = 10
@@ -60,6 +61,9 @@ export default {
 							}
 						}
 					}
+					break;
+				case BlockTypes.CLONE.numericId:
+					Game.entities.push(new CloneEntity(tickablePosition))	
 					break;
 
 			}

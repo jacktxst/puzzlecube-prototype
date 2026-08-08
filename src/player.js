@@ -92,7 +92,6 @@ export default {
 	moveForward() {
 		if (this.isDoingMoveAnimation || this.isFalling) return;
 		this.moveDirectionId = 0
-
 		if ( ! this.collide() ) this.isDoingMoveAnimation = true
 	},
 
