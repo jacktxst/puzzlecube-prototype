@@ -46,7 +46,7 @@ export default {
 	LIFT : {
 		numericId : 8,
 		solid: false,
-
+		material: new THREE.MeshBasicMaterial({color:0xffff00,transparent:true,opacity:0.5})
 	},
 	PUSH : {
 		numericId : 9,
