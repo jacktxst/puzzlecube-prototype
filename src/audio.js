@@ -22,7 +22,7 @@ export default {
 	},
 
 	async loadTrack(name) {
-		const response = await fetch("./assets/"+name);
+		const response = await fetch("./assets/music/"+name);
 		const arrayBuffer = await response.arrayBuffer();
 		this.audioBuffers[name] = await this.ctx.decodeAudioData(arrayBuffer);
 	},

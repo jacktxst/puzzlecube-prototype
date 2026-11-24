@@ -30,7 +30,7 @@ const PLAYER_SPIN_DIRS = [
 
 export default {
 
-	mesh : new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), new THREE.MeshLambertMaterial( { color: 0x00ff00 } ) ),
+	mesh : new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), new THREE.MeshLambertMaterial( { color: 0x00ff00, emissive: 0x00ff00} ) ),
 	ANIM_LENGTH : 0.25,
 	position : new THREE.Vector3(),
 	moveDirectionId : 0,
@@ -54,7 +54,7 @@ export default {
 
 		temp.y += 1
 		if ( World.isSolidAt(temp) ) {
-			GameAudio.play("fail")
+			// GameAudio.play("fail")
 			return true
 		}
 		temp.y -= 1
@@ -64,25 +64,25 @@ export default {
 			// check 1 block beyond for solidity
 			temp.add(PLAYER_MOVE_DIRS[this.moveDirectionId])
 			if ( World.isSolidAt(temp) ) {
-				GameAudio.play("fail")
+				// GameAudio.play("fail")
 				return true
 			} else {
 				temp.sub(PLAYER_MOVE_DIRS[this.moveDirectionId])
 				Game.entities.push(new MovingCube(temp.clone(), PLAYER_MOVE_DIRS[this.moveDirectionId]));
 				World.setBlockAt(temp.clone(), BlockTypes.EMPTY.numericId)
-				GameAudio.play("move")
+				// GameAudio.play("move")
 				return false;
 			}
 
 		}
 
 		else if ( World.isSolidAt(temp) ) {
-			GameAudio.play("fail")
+			// GameAudio.play("fail")
 			return true
 		}
 		
 		else {
-			GameAudio.play("move")
+			// GameAudio.play("move")
 			return false
 		}
 
@@ -125,6 +125,7 @@ export default {
 		this.position = new THREE.Vector3( Levels[Game.currentLevel].spawnpoint.x, Levels[Game.currentLevel].spawnpoint.y, Levels[Game.currentLevel].spawnpoint.z )
 		this.mesh.position.copy(this.position)
 		this.mesh.rotation.set(0,0,0,'XYZ')
+		this.mesh.add(new THREE.PointLight( 0x00ff00, 4, 100 ))
 		this.isFalling = false 
 		this.isDoingMoveAnimation = false
 		this.animationProgress = 0

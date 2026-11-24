@@ -20,13 +20,13 @@ export default {
 		
 		scene.add(Player.mesh)
 
-		const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+		const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
 		let originObject = new THREE.Object3D()
 
 		directionalLight.target = originObject
 		directionalLight.position.set(-5, 7, 10)
 		scene.add( directionalLight );
-		scene.background = Textures.starTexture
+		scene.background = new THREE.Color().setHex( 0x000000 );
 		return scene
 	},
 
@@ -45,6 +45,12 @@ export default {
 		loadingMessage.classList.add("centered")
 		document.body.appendChild(loadingMessage)
 
+
+
+
+
+
+
 		this.world = World // for console access
 		this.editor = Editor
 		this.player = Player
@@ -52,9 +58,9 @@ export default {
 		this.clock = new THREE.Timer()
 
 		this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-		this.camera.position.y = 10;
-		this.camera.position.z = 10
-		this.camera.position.x = 3
+		this.camera.position.y = 7.5;
+		this.camera.position.z = 11
+		this.camera.position.x = 4 * 0.75
 		this.camera.lookAt(new THREE.Vector3())
 
 		this.raycaster = new THREE.Raycaster()
@@ -78,21 +84,57 @@ export default {
 
 		this.textureLoader = new THREE.TextureLoader();
 
-		Textures.starTexture = await this.textureLoader.loadAsync("./assets/stars.jpg");
+		let Textures = [];
 
+		let textureNames = [
+			"box_glow",
+			"box",
+			"lift",
+			"locked",
+			"locked_glow",
+			"unlocked_glow",
+			"unlocked",
+			"switch_off",
+			"switch_off_glow",
+			"switch_on",
+			"switch_on_glow",
+			"tiles_glow",
+			"tiles"
+		];
 
-		
+		for (let textureName of textureNames) {
 
-		
+			let texture = await this.textureLoader.loadAsync("./assets/textures/" + textureName + ".png");
+			texture.magFilter = THREE.NearestFilter;
+			texture.minFilter = THREE.NearestFilter;
+			Textures[textureName] = texture;
 
+		}
+
+		/* resolve materials */
+
+		for (let blockType in BlockTypes) {
+			if (BlockTypes[blockType].material !== undefined) continue;
+			BlockTypes[blockType].material = new THREE.MeshLambertMaterial()
+			BlockTypes[blockType].material.map = Textures[BlockTypes[blockType].textureName]
+			BlockTypes[blockType].material.emissive = new THREE.Color(1,1,1)
+			BlockTypes[blockType].material.emissiveMap = Textures[BlockTypes[blockType].textureName + "_glow"]
+
+			if (BlockTypes[blockType].matParams) {
+				for (let thing in BlockTypes[blockType].matParams) {
+					BlockTypes[blockType].material[thing] = BlockTypes[blockType].matParams[thing];
+				}
+			}
+
+		}
 
 		loadingMessage.innerHTML = "loading audio..."
 
+		/*
 		GameAudio.init()
+		*/
+
 		await Audio.init()
-
-		
-
 
 
 		loadingMessage.innerHTML = "setting up scene..."
@@ -105,7 +147,7 @@ export default {
 
 		this.entities = []
 
-		Editor.init()
+		// Editor.init()
 
 
 
@@ -129,9 +171,9 @@ export default {
 
 		this.scene = this.gameScene
 		this.loadLevel(level)
-		DPad.enable()
+		// DPad.enable()
 		
-		Editor.enable()
+		// Editor.enable()
 		Input.enablePlayerMovement()
 
 	},
@@ -139,8 +181,8 @@ export default {
 	exitGame() {
 		Audio.play("mus_level5.mp3")
 		Input.disablePlayerMovement()
-		DPad.disable()
-		Editor.disable()
+		// DPad.disable()
+		// Editor.disable()
 		for (let ent of this.entities) ent.cleanup()
 		this.entities = []
 		this.scene = this.menuScene
@@ -187,9 +229,11 @@ export default {
 		this.currentLevel = levelId
 		World.loadLevel(Levels[this.currentLevel].data)
 		Player.init()
+
 		if (Audio.currentTrack != Levels[this.currentLevel].trackName) {
 			Audio.play(Levels[this.currentLevel].trackName)
 		}
+
 	}
 
 }

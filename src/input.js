@@ -151,6 +151,7 @@ export default {
 
 		window.removeEventListener("mousemove", this.handleMouseMoveEditor)
 		Game.renderer.domElement.removeEventListener("mousedown", this.handleMouseDownEditor)
+		Game.renderer.domElement.removeEventListener("mouseup ", this.handleMouseUpEditor)
 		window.removeEventListener("keydown"  , this.handleKeyEventEditor)
 
 	}

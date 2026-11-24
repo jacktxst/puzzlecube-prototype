@@ -8,6 +8,12 @@ import Game from './game.js'
 
 window.game = Game
 
+/*
+
+	play button
+
+*/
+
 let startGameButton = document.createElement("button")
 let img = document.createElement("img")
 
@@ -33,7 +39,6 @@ startGameButton.addEventListener("click", (e)=>{
 	div.innerHTML = "puzzlecube prototype build jun 2026"
 
 	document.body.appendChild(div)
-
 
 })
 
