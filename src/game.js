@@ -3,15 +3,14 @@ import Input from './input.js'
 import Player from './player.js'
 import Editor from './editor.js'
 import World from './world.js'
-import GameAudio from './gameaudio.js'
 import Levels from './levels.js'
 import Audio from './audio.js'
 import BlockTypes from './blocktypes.js'
 import Menu from './menu.js'
-import DPad from './dpad.js'
+import CameraControl from "./CameraControl.js";
 
 
-let Textures = {}
+const Textures = {}
 
 export default {
 
@@ -26,18 +25,18 @@ export default {
 		directionalLight.target = originObject
 		directionalLight.position.set(-5, 7, 10)
 		scene.add( directionalLight );
-		scene.background = new THREE.Color().setHex( 0x000000 );
+		scene.background = Textures.stars
 		return scene
 	},
 
 	createMenuScene() {
 		const scene = new THREE.Scene();
-		scene.background = Textures.starTexture
+		scene.background = Textures.stars
 		return scene
 	},
 
 	// load assets and initialize main menu
-	async gameInit() {
+	async onGameStart() {
 
 		const loadingMessage = document.createElement('div')
 		loadingMessage.innerHTML = "setting up..."
@@ -45,16 +44,6 @@ export default {
 		loadingMessage.classList.add("centered")
 		document.body.appendChild(loadingMessage)
 
-
-
-
-
-
-
-		this.world = World // for console access
-		this.editor = Editor
-		this.player = Player
-		
 		this.clock = new THREE.Timer()
 
 		this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -62,6 +51,8 @@ export default {
 		this.camera.position.z = 11
 		this.camera.position.x = 4 * 0.75
 		this.camera.lookAt(new THREE.Vector3())
+
+		CameraControl.init(this.camera)
 
 		this.raycaster = new THREE.Raycaster()
 
@@ -76,15 +67,11 @@ export default {
 			this.renderer.setPixelRatio(window.devicePixelRatio); 
 		})
 
-		
-
-
-
 		loadingMessage.innerHTML = "loading textures..."
 
 		this.textureLoader = new THREE.TextureLoader();
 
-		let Textures = [];
+		// let Textures = [];
 
 		let textureNames = [
 			"box_glow",
@@ -99,14 +86,15 @@ export default {
 			"switch_on",
 			"switch_on_glow",
 			"tiles_glow",
-			"tiles"
+			"tiles",
+			"stars"
 		];
 
 		for (let textureName of textureNames) {
 
 			let texture = await this.textureLoader.loadAsync("./assets/textures/" + textureName + ".png");
-			texture.magFilter = THREE.NearestFilter;
-			texture.minFilter = THREE.NearestFilter;
+			// texture.magFilter = THREE.NearestFilter;
+			// texture.minFilter = THREE.NearestFilter;
 			Textures[textureName] = texture;
 
 		}
@@ -130,12 +118,7 @@ export default {
 
 		loadingMessage.innerHTML = "loading audio..."
 
-		/*
-		GameAudio.init()
-		*/
-
 		await Audio.init()
-
 
 		loadingMessage.innerHTML = "setting up scene..."
 
@@ -147,20 +130,17 @@ export default {
 
 		this.entities = []
 
-		// Editor.init()
-
-
+		Editor.init()
 
 		loadingMessage.innerHTML = "initializing ui..."
 
-		DPad.init()
-
 		Menu.init()
 
+		document.body.removeChild(loadingMessage)
 		document.body.appendChild(Menu.mainMenu.div)
 
 		Audio.play("mus_level5.mp3")
-		document.body.removeChild(loadingMessage)
+
 
 		this.renderer.setAnimationLoop( this.animate.bind(this) );
 
@@ -203,6 +183,7 @@ export default {
 		let deltaTime = this.clock.getDelta()
 
 		Player.update(deltaTime)
+		CameraControl.update(deltaTime)
 
 		let id = 0
 		while (true) {
@@ -230,7 +211,7 @@ export default {
 		World.loadLevel(Levels[this.currentLevel].data)
 		Player.init()
 
-		if (Audio.currentTrack != Levels[this.currentLevel].trackName) {
+		if (Audio.currentTrack !== Levels[this.currentLevel].trackName) {
 			Audio.play(Levels[this.currentLevel].trackName)
 		}
 

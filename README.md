@@ -4,18 +4,22 @@ This is a prototype for a game I'm working on. The only reason this repo is publ
 
 # TODO:
 
+- [ ] level browser / inspector
+- [ ] larger levels
+- [x] camera controls
+- [ ] camera position as level data
 - [ ] display currently selected block type in editor
 - [ ] all buttons must be pressed to open the door (AND)
 - [ ] "key" item
 - [ ] support for different meshes
 - [ ] wires and logic gates?
 - [x] editor block pallette
-- [ ] editor: implement click+drag for cuboid fill, with preview hologram
+- [x] editor: implement click+drag for cuboid fill, with preview hologram
 - [ ] editor bug: hologram still stays even when you move mouse off of the grid
 - [x] fix parralel universe bug by enforcing strict bounds
 - [x] levels should be "compressed" to not include all the empty stuff
 - [x] level export and level editor controls should be well documented
-- [ ] support for texturing the blocks
+- [x] support for texturing the blocks
 - [ ] add "new level"
 - [ ] ice block functionality
 	- [ ] ice rendering correct
@@ -23,8 +27,8 @@ This is a prototype for a game I'm working on. The only reason this repo is publ
 	- [ ] player slides on ice (sometimes)
 - [ ] bugfix: clones leaving the edge of the level
 - [ ] bugfix: moving block destroying stuff
-- [ ] hide mobile controls on pc
-- [ ] unify audio and gameaudio.
+- [ ] mobile controls
+- [ ] add sound effects.
 - [x] animate moving cube
 - [ ] animate lift
 - [x] animate falling tile

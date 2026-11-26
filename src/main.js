@@ -26,7 +26,7 @@ startGameButton.appendChild(img);
 startGameButton.classList.add("centered");
 
 startGameButton.addEventListener("click", (e)=>{
-	Game.gameInit()
+	Game.onGameStart()
 	document.body.removeChild(startGameButton)
 
 	let div = document.createElement("div")

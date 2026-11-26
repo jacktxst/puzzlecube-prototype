@@ -5,7 +5,6 @@ import FallingTileEntity from './ent_falling.js'
 
 import BlockTypes from './blocktypes.js'
 import Game from './game.js'
-import GameAudio from './gameaudio.js'
 import Levels from './levels.js'
 
 const PI = 3.141592
